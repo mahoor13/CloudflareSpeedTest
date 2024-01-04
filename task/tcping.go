@@ -55,7 +55,7 @@ func NewPing() *Ping {
 		ips:     ips,
 		csv:     make(utils.PingDelaySet, 0),
 		control: make(chan bool, Routines),
-		bar:     utils.NewBar(len(ips), "可用:", ""),
+		bar:     utils.NewBar(len(ips), "Available:", ""),
 	}
 }
 
@@ -64,9 +64,9 @@ func (p *Ping) Run() utils.PingDelaySet {
 		return p.csv
 	}
 	if Httping {
-		fmt.Printf("开始延迟测速（模式：HTTP, 端口：%d, 范围：%v ~ %v ms, 丢包：%.2f)\n", TCPPort, utils.InputMinDelay.Milliseconds(), utils.InputMaxDelay.Milliseconds(), utils.InputMaxLossRate)
+		fmt.Printf("Starting latency test (Mode: HTTP, Port: %d, Range: %v ~ %v ms, Packet Loss: %.2f)\n", TCPPort, utils.InputMinDelay.Milliseconds(), utils.InputMaxDelay.Milliseconds(), utils.InputMaxLossRate)
 	} else {
-		fmt.Printf("开始延迟测速（模式：TCP, 端口：%d, 范围：%v ~ %v ms, 丢包：%.2f)\n", TCPPort, utils.InputMinDelay.Milliseconds(), utils.InputMaxDelay.Milliseconds(), utils.InputMaxLossRate)
+		fmt.Printf("Starting latency test (Mode: TCP, Port: %d, Range: %v ~ %v ms, Packet Loss: %.2f)\n", TCPPort, utils.InputMinDelay.Milliseconds(), utils.InputMaxDelay.Milliseconds(), utils.InputMaxLossRate)
 	}
 	for _, ip := range p.ips {
 		p.wg.Add(1)
@@ -128,7 +128,7 @@ func (p *Ping) appendIPData(data *utils.PingData) {
 
 // handle tcping
 func (p *Ping) tcpingHandler(ip *net.IPAddr) {
-	recv, totalDlay := p.checkConnection(ip)
+	recv, totalDelay := p.checkConnection(ip)
 	nowAble := len(p.csv)
 	if recv != 0 {
 		nowAble++
@@ -139,9 +139,9 @@ func (p *Ping) tcpingHandler(ip *net.IPAddr) {
 	}
 	data := &utils.PingData{
 		IP:       ip,
-		Sended:   PingTimes,
+		Sent:     PingTimes,
 		Received: recv,
-		Delay:    totalDlay / time.Duration(recv),
+		Delay:    totalDelay / time.Duration(recv),
 	}
 	p.appendIPData(data)
 }

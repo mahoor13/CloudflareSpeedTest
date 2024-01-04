@@ -53,20 +53,20 @@ func TestDownloadSpeed(ipSet utils.PingDelaySet) (speedSet utils.DownloadSpeedSe
 	if Disable {
 		return utils.DownloadSpeedSet(ipSet)
 	}
-	if len(ipSet) <= 0 { // IP数组长度(IP数量) 大于 0 时才会继续下载测速
-		fmt.Println("\n[信息] 延迟测速结果 IP 数量为 0，跳过下载测速。")
+	if len(ipSet) <= 0 { // Continue download speed testing only when the length of the IP array (number of IPs) is greater than 0
+		fmt.Println("\n[Info] Skipped download speed test as the number of IPs in the latency test result is 0.")
 		return
 	}
 	testNum := TestCount
-	if len(ipSet) < TestCount || MinSpeed > 0 { // 如果IP数组长度(IP数量) 小于下载测速数量（-dn），则次数修正为IP数
+	if len(ipSet) < TestCount || MinSpeed > 0 { // If the length of the IP array is less than the download speed test quantity (-dn), correct the test quantity to the number of IPs
 		testNum = len(ipSet)
 	}
 	if testNum < TestCount {
 		TestCount = testNum
 	}
 
-	fmt.Printf("开始下载测速（下限：%.2f MB/s, 数量：%d, 队列：%d）\n", MinSpeed, TestCount, testNum)
-	// 控制 下载测速进度条 与 延迟测速进度条 长度一致（强迫症）
+	fmt.Printf("Starting download speed test (Lower limit: %.2f MB/s, Quantity: %d, Queue: %d)\n", MinSpeed, TestCount, testNum)
+	// Force the download speed progress bar length to be consistent with the latency test progress bar length (for OCD reasons)
 	bar_a := len(strconv.Itoa(len(ipSet)))
 	bar_b := "     "
 	for i := 0; i < bar_a; i++ {
@@ -76,20 +76,20 @@ func TestDownloadSpeed(ipSet utils.PingDelaySet) (speedSet utils.DownloadSpeedSe
 	for i := 0; i < testNum; i++ {
 		speed := downloadHandler(ipSet[i].IP)
 		ipSet[i].DownloadSpeed = speed
-		// 在每个 IP 下载测速后，以 [下载速度下限] 条件过滤结果
+		// After each IP download speed test, filter the results based on the [Download Speed Lower Limit]
 		if speed >= MinSpeed*1024*1024 {
 			bar.Grow(1, "")
-			speedSet = append(speedSet, ipSet[i]) // 高于下载速度下限时，添加到新数组中
-			if len(speedSet) == TestCount {       // 凑够满足条件的 IP 时（下载测速数量 -dn），就跳出循环
+			speedSet = append(speedSet, ipSet[i]) // When above the download speed lower limit, add to the new array
+			if len(speedSet) == TestCount {       // When enough IPs meeting the conditions (download speed test quantity -dn) are reached, exit the loop
 				break
 			}
 		}
 	}
 	bar.Done()
-	if len(speedSet) == 0 { // 没有符合速度限制的数据，返回所有测试数据
+	if len(speedSet) == 0 { // If there is no data that meets the speed limit, return all test data
 		speedSet = utils.DownloadSpeedSet(ipSet)
 	}
-	// 按速度排序
+	// Sort by speed
 	sort.Sort(speedSet)
 	return
 }
@@ -106,16 +106,16 @@ func getDialContext(ip *net.IPAddr) func(ctx context.Context, network, address s
 	}
 }
 
-// return download Speed
+// Return download speed
 func downloadHandler(ip *net.IPAddr) float64 {
 	client := &http.Client{
 		Transport: &http.Transport{DialContext: getDialContext(ip)},
 		Timeout:   Timeout,
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			if len(via) > 10 { // 限制最多重定向 10 次
+			if len(via) > 10 { // Limit to a maximum of 10 redirects
 				return http.ErrUseLastResponse
 			}
-			if req.Header.Get("Referer") == defaultURL { // 当使用默认下载测速地址时，重定向不携带 Referer
+			if req.Header.Get("Referer") == defaultURL { // When using the default download speed test address, do not carry Referer during redirection
 				req.Header.Del("Referer")
 			}
 			return nil
@@ -136,10 +136,10 @@ func downloadHandler(ip *net.IPAddr) float64 {
 	if response.StatusCode != 200 {
 		return 0.0
 	}
-	timeStart := time.Now()           // 开始时间（当前）
-	timeEnd := timeStart.Add(Timeout) // 加上下载测速时间得到的结束时间
+	timeStart := time.Now()           // Start time (current)
+	timeEnd := timeStart.Add(Timeout) // End time obtained by adding download speed test time
 
-	contentLength := response.ContentLength // 文件大小
+	contentLength := response.ContentLength // File size
 	buffer := make([]byte, bufferSize)
 
 	var (
@@ -152,7 +152,7 @@ func downloadHandler(ip *net.IPAddr) float64 {
 	var nextTime = timeStart.Add(timeSlice * time.Duration(timeCounter))
 	e := ewma.NewMovingAverage()
 
-	// 循环计算，如果文件下载完了（两者相等），则退出循环（终止测速）
+	// Loop to calculate, if the file is downloaded (both are equal), exit the loop (terminate the speed test)
 	for contentLength != contentRead {
 		currentTime := time.Now()
 		if currentTime.After(nextTime) {
@@ -161,20 +161,20 @@ func downloadHandler(ip *net.IPAddr) float64 {
 			e.Add(float64(contentRead - lastContentRead))
 			lastContentRead = contentRead
 		}
-		// 如果超出下载测速时间，则退出循环（终止测速）
+		// Exit the loop (terminate the speed test) if it exceeds the download speed test time
 		if currentTime.After(timeEnd) {
 			break
 		}
 		bufferRead, err := response.Body.Read(buffer)
 		if err != nil {
-			if err != io.EOF { // 如果文件下载过程中遇到报错（如 Timeout），且并不是因为文件下载完了，则退出循环（终止测速）
+			if err != io.EOF { // Exit the loop (terminate the speed test) if an error occurs during the file download process (such as Timeout) and it is not due to the file being downloaded
 				break
-			} else if contentLength == -1 { // 文件下载完成 且 文件大小未知，则退出循环（终止测速），例如：https://speed.cloudflare.com/__down?bytes=200000000 这样的，如果在 10 秒内就下载完成了，会导致测速结果明显偏低甚至显示为 0.00（下载速度太快时）
+			} else if contentLength == -1 { // Exit the loop (terminate the speed test) if the file is downloaded and the file size is unknown, for example: https://speed.cloudflare.com/__down?bytes=200000000. If it is downloaded within 10 seconds, the test result will be significantly lower or even displayed as 0.00 (when the download speed is too fast)
 				break
 			}
-			// 获取上个时间片
+			// Get the last time slice
 			last_time_slice := timeStart.Add(timeSlice * time.Duration(timeCounter-1))
-			// 下载数据量 / (用当前时间 - 上个时间片/ 时间片)
+			// Downloaded data / (current time - last time slice / time slice)
 			e.Add(float64(contentRead-lastContentRead) / (float64(currentTime.Sub(last_time_slice)) / float64(timeSlice)))
 		}
 		contentRead += int64(bufferRead)

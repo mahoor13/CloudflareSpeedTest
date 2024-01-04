@@ -6,311 +6,290 @@
 [![GitHub Star](https://img.shields.io/github/stars/XIU2/CloudflareSpeedTest.svg?style=flat-square&label=Star&color=00ADD8&logo=github)](https://github.com/XIU2/CloudflareSpeedTest/)
 [![GitHub Fork](https://img.shields.io/github/forks/XIU2/CloudflareSpeedTest.svg?style=flat-square&label=Fork&color=00ADD8&logo=github)](https://github.com/XIU2/CloudflareSpeedTest/)
 
-国外很多网站都在使用 Cloudflare CDN，但分配给中国内地访客的 IP 并不友好（延迟高、丢包多、速度慢）。  
-虽然 Cloudflare 公开了所有 [IP 段](https://www.cloudflare.com/zh-cn/ips/) ，但想要在这么多 IP 中找到适合自己的，怕是要累死，于是就有了这个软件。
+Many foreign websites use Cloudflare CDN, but the IP addresses assigned to visitors in mainland China are not friendly (high latency, high packet loss, slow speed).  
+Although Cloudflare has publicly disclosed all [IP ranges](https://www.cloudflare.com/zh-cn/ips/), finding the suitable one among so many IPs can be challenging. Thus, this software was created.
 
-**「自选优选 IP」测试 Cloudflare CDN 延迟和速度，获取最快 IP (IPv4+IPv6)**！好用的话**点个`⭐`鼓励一下叭~**
+**"Choose Your Preferred IP" to test Cloudflare CDN latency and speed, and get the fastest IP (IPv4+IPv6)! If you find it useful, give it a ⭐!**
 
-> _分享我其他开源项目：[**TrackersList.com** - 全网热门 BT Tracker 列表！有效提高 BT 下载速度~](https://github.com/XIU2/TrackersListCollection) <img src="https://img.shields.io/github/stars/XIU2/TrackersListCollection.svg?style=flat-square&label=Star&color=4285dd&logo=github" height="16px" />_  
-> _[**UserScript** - 🐵 Github 高速下载、知乎增强、自动无缝翻页、护眼模式 等十几个**油猴脚本**~](https://github.com/XIU2/UserScript) <img src="https://img.shields.io/github/stars/XIU2/UserScript.svg?style=flat-square&label=Star&color=4285dd&logo=github" height="16px" />_  
-> _[**SNIProxy** - 🧷 自用的简单 SNI Proxy（支持全平台、全系统、前置代理、配置简单等~](https://github.com/XIU2/SNIProxy) <img src="https://img.shields.io/github/stars/XIU2/SNIProxy.svg?style=flat-square&label=Star&color=4285dd&logo=github" height="16px" />_  
+> _Check out my other open-source projects: [**TrackersList.com** - A collection of popular BT Tracker lists! Effectively improves BT download speed~](https://github.com/XIU2/TrackersListCollection) <img src="https://img.shields.io/github/stars/XIU2/TrackersListCollection.svg?style=flat-square&label=Star&color=4285dd&logo=github" height="16px" />_  
+> _[**UserScript** - 🐵 Github high-speed downloads, enhanced Zhihu, automatic seamless page flipping, eye protection mode, and more than a dozen **Monkey scripts**~](https://github.com/XIU2/UserScript) <img src="https://img.shields.io/github/stars/XIU2/UserScript.svg?style=flat-square&label=Star&color=4285dd&logo=github" height="16px" />_  
+> _[**SNIProxy** - 🧷 Simple SNI Proxy for personal use (supports all platforms, systems, front-end proxy, simple configuration, etc.)~](https://github.com/XIU2/SNIProxy) <img src="https://img.shields.io/github/stars/XIU2/SNIProxy.svg?style=flat-square&label=Star&color=4285dd&logo=github" height="16px" />_  
 
-> 本项目也支持对**其他 CDN / 网站 IP** 延迟测速（如：[CloudFront](https://github.com/XIU2/CloudflareSpeedTest/discussions/304)、[Gcore](https://github.com/XIU2/CloudflareSpeedTest/discussions/303) CDN），但下载测速需自行寻找地址
+> This project also supports latency testing for **other CDN / website IPs** (such as: [CloudFront](https://github.com/XIU2/CloudflareSpeedTest/discussions/304), [Gcore](https://github.com/XIU2/CloudflareSpeedTest/discussions/303) CDN), but you need to find the addresses yourself for downloading speed tests.
 
-> 对于**代理套 Cloudflare CDN** 的用户，须知这应为**备用方案**，而不应该是**唯一方案**，请勿过度依赖 [#382](https://github.com/XIU2/CloudflareSpeedTest/discussions/382) [#383](https://github.com/XIU2/CloudflareSpeedTest/discussions/383)
+> For users with **proxies through Cloudflare CDN**, be aware that this should be considered as an **alternative solution**, not the **only solution**. Avoid excessive reliance on [#382](https://github.com/XIU2/CloudflareSpeedTest/discussions/382) [#383](https://github.com/XIU2/CloudflareSpeedTest/discussions/383)
 
 ****
-## \# 快速使用
+## \# Quick Usage
 
-### 下载运行
+### Download and Run
 
-1. 下载编译好的可执行文件（ [Github Releases](https://github.com/XIU2/CloudflareSpeedTest/releases) / [蓝奏云](https://pan.lanzouj.com/b0742hkxe) ）并解压。  
-2. 双击运行 `CloudflareST.exe` 文件（Windows 系统），等待测速完成...
+1. Download the compiled executable file ([Github Releases](https://github.com/XIU2/CloudflareSpeedTest/releases) / [Lanzou Cloud](https://pan.lanzouj.com/b0742hkxe)) and unzip it.  
+2. Double-click the `CloudflareST.exe` file (for Windows systems) and wait for the speed test to complete...
 
 <details>
-<summary><code><strong>「 点击查看 Linux 系统下的使用示例 」</strong></code></summary>
+<summary><code><strong>「 Click to view the usage example on Linux systems 」</strong></code></summary>
 
 ****
 
-以下命令仅为示例，版本号和文件名请前往 [**Releases**](https://github.com/XIU2/CloudflareSpeedTest/releases) 查看。
+The following commands are just examples. Please check [**Releases**](https://github.com/XIU2/CloudflareSpeedTest/releases) for version numbers and file names.
 
 ``` yaml
-# 如果是第一次使用，则建议创建新文件夹（后续更新时，跳过该步骤）
+# If it is the first time, it is recommended to create a new folder (skip this step for subsequent updates)
 mkdir CloudflareST
 
-# 进入文件夹（后续更新，只需要从这里重复下面的下载、解压命令即可）
+# Enter the folder (for subsequent updates, just repeat the following download and unzip commands from here)
 cd CloudflareST
 
-# 下载 CloudflareST 压缩包（自行根据需求替换 URL 中 [版本号] 和 [文件名]）
+# Download the CloudflareST archive (replace [Version] and [Filename] in the URL according to your needs)
 wget -N https://github.com/XIU2/CloudflareSpeedTest/releases/download/v2.2.4/CloudflareST_linux_amd64.tar.gz
-# 如果你是在国内服务器上下载，那么请使用下面这几个镜像加速：
+# If you are downloading on a server in China, use one of the following mirrors for acceleration:
 # wget -N https://download.fgit.ml/XIU2/CloudflareSpeedTest/releases/download/v2.2.4/CloudflareST_linux_amd64.tar.gz
 # wget -N https://download.fgit.gq/XIU2/CloudflareSpeedTest/releases/download/v2.2.4/CloudflareST_linux_amd64.tar.gz
 # wget -N https://ghproxy.com/https://github.com/XIU2/CloudflareSpeedTest/releases/download/v2.2.4/CloudflareST_linux_amd64.tar.gz
-# 如果下载失败的话，尝试删除 -N 参数（如果是为了更新，则记得提前删除旧压缩包 rm CloudflareST_linux_amd64.tar.gz ）
+# If the download fails, try removing the -N parameter (if updating, remember to delete the old archive rm CloudflareST_linux_amd64.tar.gz)
 
-# 解压（不需要删除旧文件，会直接覆盖，自行根据需求替换 文件名）
+# Unzip (no need to delete old files, they will be overwritten directly; replace [Filename] according to your needs)
 tar -zxf CloudflareST_linux_amd64.tar.gz
 
-# 赋予执行权限
+# Grant execute permissions
 chmod +x CloudflareST
 
-# 运行（不带参数）
+# Run (without parameters)
 ./CloudflareST
 
-# 运行（带参数示例）
+# Run (with example parameters)
 ./CloudflareST -dd -tll 90
 ```
-
-> 如果平**均延迟非常低**（如 0.xx），则说明 CloudflareST **测速时走了代理**，请先关闭代理软件后再测速。  
-> 如果在**路由器**上运行，建议先关闭路由器内的代理（或将其排除），否则测速结果可能会**不准确/无法使用**。
+> If the average latency is very low (e.g., 0.xx), it indicates that CloudflareST is using a proxy during the speed test. Please disable the proxy software before testing the speed.
+> If running on a router, it is recommended to disable any proxies in the router (or exclude them), as speed test results may be inaccurate/unusable.
 
 </details>
 
-****
+# XIU2/CloudflareSpeedTest vX.X.X
 
-> _在**手机**上独立运行 CloudflareST 测速的简单教程：**[Android](https://github.com/XIU2/CloudflareSpeedTest/discussions/61)、[Android APP](https://github.com/xianshenglu/cloudflare-ip-tester-app)、[IOS](https://github.com/XIU2/CloudflareSpeedTest/discussions/321)**_
+**Quick Guide to Independently Running CloudflareST Speed Test on Mobile Phones: [Android](https://github.com/XIU2/CloudflareSpeedTest/discussions/61), [Android APP](https://github.com/xianshenglu/cloudflare-ip-tester-app), [IOS](https://github.com/XIU2/CloudflareSpeedTest/discussions/321)**
 
-> 注意！本软件仅适用于网站，**不支持给 Cloudflare WARP 优选 IP**，具体见：[#392](https://github.com/XIU2/CloudflareSpeedTest/discussions/392)
+**Note! This software is only applicable to websites and does not support selecting Cloudflare WARP preferred IP. See details: [#392](https://github.com/XIU2/CloudflareSpeedTest/discussions/392)**
 
-### 结果示例
+### Example Results
 
-测速完毕后，默认会显示**最快的 10 个 IP**，示例：
+After the speed test, it will display the **top 10 fastest IPs** by default, for example:
 
-``` bash
-IP 地址           已发送  已接收  丢包率  平均延迟  下载速度 (MB/s)
-104.27.200.69     4       4       0.00    146.23    28.64
-172.67.60.78      4       4       0.00    139.82    15.02
-104.25.140.153    4       4       0.00    146.49    14.90
-104.27.192.65     4       4       0.00    140.28    14.07
-172.67.62.214     4       4       0.00    139.29    12.71
-104.27.207.5      4       4       0.00    145.92    11.95
-172.67.54.193     4       4       0.00    146.71    11.55
-104.22.66.8       4       4       0.00    147.42    11.11
-104.27.197.63     4       4       0.00    131.29    10.26
-172.67.58.91      4       4       0.00    140.19    9.14
+```bash
+IP Address        Sent    Received    Loss Rate    Average Latency    Download Speed (MB/s)
+104.27.200.69     4       4           0.00         146.23             28.64
+172.67.60.78      4       4           0.00         139.82             15.02
+104.25.140.153    4       4           0.00         146.49             14.90
+104.27.192.65     4       4           0.00         140.28             14.07
+172.67.62.214     4       4           0.00         139.29             12.71
+104.27.207.5      4       4           0.00         145.92             11.95
+172.67.54.193     4       4           0.00         146.71             11.55
+104.22.66.8       4       4           0.00         147.42             11.11
+104.27.197.63     4       4           0.00         131.29             10.26
+172.67.58.91      4       4           0.00         140.19             9.14
 ...
-
-# 如果平均延迟非常低（如 0.xx），则说明 CloudflareST 测速时走了代理，请先关闭代理软件后再测速。
-# 如果在路由器上运行，请先关闭路由器内的代理（或将其排除），否则测速结果可能会不准确/无法使用。
-
-# 因为每次测速都是在每个 IP 段中随机 IP，所以每次的测速结果都不可能相同，这是正常的！
-
-# 注意！我发现电脑开机后第一次测速延迟会明显偏高（手动 TCPing 也一样），后续测速都正常
-# 因此建议大家开机后第一次正式测速前，先随便测几个 IP（无需等待延迟测速完成，只要进度条动了就可以直接关了）
-
-# 软件在 默认参数 下的整个流程大概步骤：
-# 1. 延迟测速（默认 TCPing 模式，HTTPing 模式需要手动加上参数）
-# 2. 延迟排序（延迟 从低到高 排序并按条件过滤，不同丢包率会分开排序，因此可能会有一些延迟低但丢包的 IP 排到后面）
-# 3. 下载测速（从延迟最低的 IP 开始依次下载测速，默认测够 10 个就会停止）
-# 4. 速度排序（速度从高到低排序）
-# 5. 输出结果（通过参数控制是否输出到命令行(-p 0)或输出到文件(-o "")）
-
-# 注意：输出的结果文件 result.csv 通过微软 Excel 表格打开会中文乱码，这是正常的，其他表格软件/记事本都显示正常
 ```
 
-测速结果第一行就是**既下载速度最快、又平均延迟最低的最快 IP**！
+The first line of the speed test results is the **fastest IP with both the highest download speed and lowest average latency**!
 
-完整结果保存在当前目录下的 `result.csv` 文件中，用**记事本/表格软件**打开，格式如下：
+The complete results are saved in the `result.csv` file in the current directory. Open it with **Notepad/Spreadsheet software**, and the format is as follows:
 
 ```
-IP 地址, 已发送, 已接收, 丢包率, 平均延迟, 下载速度 (MB/s)
+IP Address, Sent, Received, Loss Rate, Average Latency, Download Speed (MB/s)
 104.27.200.69,4,4,0.00,146.23,28.64
 ```
 
-> _大家可以按自己需求，对完整结果**进一步筛选处理**，或者去看一看进阶使用**指定过滤条件**！_
+> Customize the complete results according to your needs, or explore advanced usage with **specified filtering conditions**!
 
-****
-## \# 进阶使用
+### Advanced Usage
 
-直接运行使用的是默认参数，如果想要测速结果更全面、更符合自己的要求，可以自定义参数。
+To achieve more comprehensive and customized speed test results, you can use custom parameters.
 
 ```css
 C:\>CloudflareST.exe -h
 
 CloudflareSpeedTest vX.X.X
-测试 Cloudflare CDN 所有 IP 的延迟和速度，获取最快 IP (IPv4+IPv6)！
+Test the latency and speed of all IPs of Cloudflare CDN, get the fastest IP (IPv4+IPv6)!
 https://github.com/XIU2/CloudflareSpeedTest
 
-参数：
+Parameters:
     -n 200
-        延迟测速线程；越多延迟测速越快，性能弱的设备 (如路由器) 请勿太高；(默认 200 最多 1000)
+        Latency test threads; the more threads, the faster the latency test. Devices with weak performance (such as routers) should not set it too high; (default 200, maximum 1000)
     -t 4
-        延迟测速次数；单个 IP 延迟测速的次数；(默认 4 次)
+        Number of latency test times; the number of times a single IP's latency is tested; (default 4 times)
     -dn 10
-        下载测速数量；延迟测速并排序后，从最低延迟起下载测速的数量；(默认 10 个)
+        Number of download speed tests; after latency test and sorting, the number of IPs to perform download speed test, starting from the lowest latency; (default 10)
     -dt 10
-        下载测速时间；单个 IP 下载测速最长时间，不能太短；(默认 10 秒)
+        Download speed test time; maximum time for a single IP's download speed test; it shouldn't be too short; (default 10 seconds)
     -tp 443
-        指定测速端口；延迟测速/下载测速时使用的端口；(默认 443 端口)
+        Specify the test port; the port used during latency test/download speed test; (default port 443)
     -url https://cf.xiu2.xyz/url
-        指定测速地址；延迟测速(HTTPing)/下载测速时使用的地址，默认地址不保证可用性，建议自建；
+        Specify the test address; the address used during latency test (HTTPing)/download speed test. The default address is not guaranteed to be available; it is recommended to use a self-built address;
 
     -httping
-        切换测速模式；延迟测速模式改为 HTTP 协议，所用测试地址为 [-url] 参数；(默认 TCPing)
-        注意：HTTPing 本质上也算一种 网络扫描 行为，因此如果你在服务器上面运行，需要降低并发(-n)，否则可能会被一些严格的商家暂停服务。
-        如果你遇到 HTTPing 首次测速可用 IP 数量正常，后续测速越来越少甚至直接为 0，但停一段时间后又恢复了的情况，那么也可能是被 运营商、Cloudflare CDN 认为你在网络扫描而 触发临时限制机制，因此才会过一会儿就恢复了，建议降低并发(-n)减少这种情况的发生。
+        Switch test mode; change the latency test mode to HTTP protocol, and use the test address specified by [-url] parameter; (default TCPing)
+        Note: HTTPing is essentially a kind of network scanning behavior. If you run it on a server, you need to reduce concurrency (-n), otherwise, it may be temporarily suspended by some strict service providers. If you encounter a situation where the number of available IPs is normal during the first HTTPing test, but it decreases or even directly becomes 0 in subsequent tests, but it recovers after a while, it may also be recognized as a temporary restriction mechanism triggered by the carrier or Cloudflare CDN due to network scanning. Therefore, it will recover after a while, and it is recommended to reduce the concurrency (-n) to reduce the occurrence of this situation.
     -httping-code 200
-        有效状态代码；HTTPing 延迟测速时网页返回的有效 HTTP 状态码，仅限一个；(默认 200 301 302)
+        Effective status code; the effective HTTP status code returned when HTTPing tests the latency. Only one code is allowed; (default 200 301 302)
     -cfcolo HKG,KHH,NRT,LAX,SEA,SJC,FRA,MAD
-        匹配指定地区；地区名为当地机场三字码，英文逗号分隔，支持小写，支持 Cloudflare、AWS CloudFront，仅 HTTPing 模式可用；(默认 所有地区)
+        Match specified regions; the region name is the local airport code, separated by English commas, supports lowercase, supports Cloudflare, AWS CloudFront, only available in HTTPing mode; (default all regions)
 
     -tl 200
-        平均延迟上限；只输出低于指定平均延迟的 IP，各上下限条件可搭配使用；(默认 9999 ms)
+        Upper limit of average latency; only output IPs with average latency lower than the specified limit, various upper and lower limit conditions can be used together; (default 9999 ms)
     -tll 40
-        平均延迟下限；只输出高于指定平均延迟的 IP；(默认 0 ms)
+        Lower limit of average latency; only output IPs with average latency higher than the specified limit; (default 0 ms)
     -tlr 0.2
-        丢包几率上限；只输出低于/等于指定丢包率的 IP，范围 0.00~1.00，0 过滤掉任何丢包的 IP；(默认 1.00)
+        Upper limit of packet loss rate; only output IPs with packet loss rate lower than or equal to the specified rate, range 0.00~1.00, 0 filters out any IP with packet loss; (default 1.00)
     -sl 5
-        下载速度下限；只输出高于指定下载速度的 IP，凑够指定数量 [-dn] 才会停止测速；(默认 0.00 MB/s)
+        Lower limit of download speed; only output IPs with download speed higher than the specified speed, stop the speed test only when the specified number [-dn] is reached; (default 0.00 MB/s)
 
     -p 10
-        显示结果数量；测速后直接显示指定数量的结果，为 0 时不显示结果直接退出；(默认 10 个)
+        Display result quantity; directly display the specified quantity of results after the speed test, set to 0 to exit without displaying results; (default 10)
     -f ip.txt
-        IP段数据文件；如路径含有空格请加上引号；支持其他 CDN IP段；(默认 ip.txt)
+        IP range data file; if the path contains spaces, please add quotes; supports other CDN IP ranges; (default ip.txt)
     -ip 1.1.1.1,2.2.2.2/24,2606:4700::/32
-        指定IP段数据；直接通过参数指定要测速的 IP 段数据，英文逗号分隔；(默认 空)
+        Specify IP range data; directly specify the IP range data to be tested through parameters, separated by English commas; (default empty)
     -o result.csv
-        写入结果文件；如路径含有空格请加上引号；值为空时不写入文件 [-o ""]；(默认 result.csv)
+        Write result file; if
+
+ the path contains spaces, please add quotes; when the value is empty, do not write to the file [-o ""]; (default result.csv)
 
     -dd
-        禁用下载测速；禁用后测速结果会按延迟排序 (默认按下载速度排序)；(默认 启用)
+        Disable download speed test; after disabling, the speed test results will be sorted by latency (default sorted by download speed); (default enabled)
     -allip
-        测速全部的IP；对 IP 段中的每个 IP (仅支持 IPv4) 进行测速；(默认 每个 /24 段随机测速一个 IP)
+        Test all IPs; test each IP in the IP range (IPv4 only); (default randomly test one IP in each /24 range)
 
     -v
-        打印程序版本 + 检查版本更新
+        Print program version + check for version updates
     -h
-        打印帮助说明
+        Print help instructions
 ```
 
-### 界面解释
+### Interface Explanation
 
-为了避免大家对测速过程中的**输出内容产生误解（可用、队列等数字，下载测速一半就"中断"？）**，我特意解释下。
+To avoid misunderstanding the **output content during the speed test process (usable, queue numbers, interruption during half of the download speed test?)**, I specifically explain it.
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-> 该实例把常用参数都给加上了，即为：`-ttl 40 -tl 150 -sl 1 -dn 5`，最后输出结果如下：
+> This example has added common parameters, namely: `-ttl 40 -tl 150 -sl 1 -dn 5`, and the final output results are as follows:
 
-``` bash
+```bash
 # XIU2/CloudflareSpeedTest vX.X.X
 
-开始延迟测速（模式：TCP, 端口：443, 范围：40 ~ 150 ms, 丢包：1.00)
-321 / 321 [----------------------------------------------------------------------------------] 可用: 30
-开始下载测速（下限：1.00 MB/s, 数量：5, 队列：10）
+Start latency test (mode: TCP, port: 443, range: 40 ~ 150 ms, loss: 1.00)
+321 / 321 [----------------------------------------------------------------------------------] Available: 30
+Start download speed test (lower limit: 1.00 MB/s, quantity: 5, queue: 10)
 3 / 5 [---------------------------------------------------------↗---------------------------]
-IP 地址           已发送  已接收  丢包率  平均延迟  下载速度 (MB/s)
-XXX.XXX.XXX.XXX   4       4      0.00    83.32    3.66
-XXX.XXX.XXX.XXX   4       4      0.00    107.81   2.49
-XXX.XXX.XXX.XXX   4       3      0.25    149.59   1.04
+IP Address        Sent    Received    Loss Rate    Average Latency    Download Speed (MB/s)
+XXX.XXX.XXX.XXX   4       4           0.00         83.32              3.66
+XXX.XXX.XXX.XXX   4       4           0.00         107.81             2.49
+XXX.XXX.XXX.XXX   4       3           0.25         149.59             1.04
 
-完整测速结果已写入 result.csv 文件，可使用记事本/表格软件查看。
-按下 回车键 或 Ctrl+C 退出。
+Complete speed test results have been written to the result.csv file, you can use Notepad/Spreadsheet software to view it.
+Press Enter or Ctrl+C to exit.
 ```
+# For those who have just started using CloudflareST, you might be confused: **There were 30 usable IPs in the latency test, but why are there only 3 left at the end?**
+What does the queue in the download speed test mean? Do I have to wait in line for the download speed test?
+
+CloudflareST will perform latency tests first, and during this process, the progress bar on the right will real-time display the number of available IPs (`Available: 30`). However, note that this available quantity refers to the **number of IPs that passed the test without timing out**, unrelated to latency upper and lower limits, or packet loss conditions. After the latency test is completed, due to specifying latency upper and lower limits and packet loss conditions, only `10` IPs remain (waiting for download speed tests, i.e., `Queue: 10`).
+
+So, in the example above, after the latency test of `321` IPs is completed, only `30` IPs passed the test without timing out. Then, based on the latency upper and lower limits (`40 ~ 150 ms`) and packet loss upper limit conditions, only `10` IPs that meet the requirements remain. If you have disabled download speed test (`-dd`), then these `10` IPs will be directly output. However, in this example, the download speed test is not disabled, so the software will continue to perform download speed tests on these `10` IPs (`Queue: 10`).
+
+> Because download speed tests are done one by one in a single-threaded manner, the number of IPs waiting for download speed determines the `queue`.
 
 ****
 
-> 刚接触 CloudflareST 的人，可能会迷惑**明明延迟测速可用 IP 有 30 个，怎么最后只剩下 3 个了呢？**  
-> 下载测速里的队列又是什么意思？难道我下载测速还要排队？
+> You may have noticed: **You specified to find 5 IPs that meet the download speed conditions, but why did it "interrupt" at 3?**
 
-CloudflareST 会先延迟测速，在这过程中进度条右侧会实时显示可用 IP 数量（`可用: 30`），但注意该可用数量指的是**测试通过没有超时的 IP 数量**，和延迟上下限、丢包条件无关。当延迟测速完成后，因为还指定了**延迟上下限、丢包**的条件，所以按照条件过滤后只剩下 `10` 个了（也就是等待下载测速的 `队列：10`）。
+In the download speed test progress bar, `3 / 5`, the former indicates that `3` IPs meeting the download speed lower limit conditions (i.e., download speed above `1 MB/s`) have been found. The latter `5` indicates that you requested to find `5` IPs meeting the download speed lower limit conditions (`-dn 5`).
 
-即以上示例中，`321` 个 IP 延迟测速完成后，只有 `30` 个 IP 测试通过没有超时，然后根据延迟上下限范围：`40 ~ 150 ms` 及丢包上限条件过滤后，只剩下 `10` 个满足要求的 IP 了。如果你 `-dd` 禁用了下载测速，那么就会直接输出这 `10` 个 IP 了。当然该示例并未禁用，因此接下来软件会继续对这 `10` 个 IP 进行下载测速（`队列：10`）。
+> Additionally, it is worth noting that if you set `-dn` greater than the download speed test queue, for example, after the latency test, only `4` IPs remain, then the numbers in the download speed test progress bar will both be `4`, not the `5` specified by `-dn`.
 
-> 因为下载测速是单线程一个个 IP 挨着排队测速的，因此等待下载测速的 IP 数量才会叫做 `队列`。
+After the software finishes testing these `10` IPs, it found only `3` IPs with download speeds above `1 MB/s`, and the remaining `7` IPs are "not qualified."
 
-****
-
-> 你可能注意到了，**明明指定了要找到 5 个满足下载速度条件的 IP，怎么才 3 个就 “中断” 了呢？**
-
-下载测速进度条中的 `3 / 5`，前者指的是找到了 `3` 个满足下载速度下限条件的 IP（即下载速度高于 `1 MB/s` ），后者 `5` 指的是你要求找到 `5` 个满足下载速度下限条件的 IP（`-dn 5`）。
-
-> 另外，提醒一下，如果你指定的 `-dn` 大于下载测速队列，比如你延迟测速后只剩下 `4` 个 IP 了，那么下载测速进度条中后面的数字就会和下载测速队列一样都是 `4` 个，而非你 `-dn` 指定的 `5` 个了。
-
-软件在测速完这 `10` 个 IP 后，只找到了 `3` 个下载速度高于 `1 MB/s` 的 IP，剩下的 `7` 个 IP 都是 “不及格” 的。
-
-因此，这不是 `“每次测速都不到 5 就中断了”`，而是所有 IP 都下载测速完了，但却只找到了 `3` 个满足条件的。
+So, it's not "it interrupts before reaching 5 every time," but rather all IPs have completed the download speed test, but only `3` IPs meeting the conditions were found.
 
 ****
 
-如果不想遇到这种全部测速一遍都没几个满足条件的情况，那么就要**调低下载速度上限参数 `-sl`**，或者移除。
+If you don't want to encounter a situation where there are not many IPs meeting the conditions after all the tests, you can **lower the download speed upper limit parameter `-sl`**, or remove it.
 
-因为只要指定了 `-sl` 参数，那么只要没有凑够 `-dn` 的数量（默认 10 个），就会一直测速下去，直到凑够或全部测速完。移除 `-sl` 并添加 `-dn 20` 参数，这样就是只测速延迟最低的前 20 个 IP，测速完就停止，节省时间。
+Because as long as the `-sl` parameter is specified, the speed test will continue until the specified number of `-dn` (default 10) is reached or all IPs have completed the test. Removing `-sl` and adding `-dn 20` will only test the latency of the top 20 IPs with the lowest latency and stop after testing, saving time.
 
 ****
 
-另外，如果全部队列 IP 都测速完了，但一个满足下载速度条件的 IP 都没有，那么就会**直接输出全部队列 IP 的下载测速结果**，这样你就能看到这些 IP 的下载速度都有多少，心里也就有数了，然后**适当调低 `-sl` 再试试**。
+In addition, if all IPs in the queue have completed the test but none of them meet the download speed conditions, then it will **directly output the download speed results of all IPs in the queue**. This way, you can see the download speeds of these IPs, and then **try lowering `-sl` appropriately**.
 
-同样，延迟测速方面，`可用: 30`、`队列：10` 这两个数值也可以让你清楚，你设置的延迟条件对你来说是否过于苛刻。如果可用 IP 一大堆，但条件过滤后只剩下 2、3 个，那不用说就知道需要**调低预期的延迟/丢包条件**了。
+Similarly, for latency tests, the values of `Available: 30` and `Queue: 10` can tell you whether the latency conditions you set are too strict for you. If there are plenty of available IPs, but after filtering conditions, only 2 or 3 remain, then it's clear that you need to **lower the expected latency/packet loss conditions**.
 
-这两个机制，一个是告诉你**延迟丢包条件**是否合适的，一个是告诉你**下载速度条件**是否合适的。
+These two mechanisms, one tells you about **latency and packet loss conditions**, and the other tells you about **download speed conditions**.
 
 </details>
 
 ****
 
-### 使用示例
+### Usage Examples
 
-Windows 要指定参数需要在 CMD 中运行，或者把参数添加到快捷方式目标中。
+On Windows, specifying parameters requires running in CMD or adding parameters to the shortcut target.
 
-> **注意**：各参数均有**默认值**，使用默认值的参数是可以省略的（**按需选择**），参数**不分前后顺序**。  
-> **提示**：Windows **PowerShell** 只需把下面命令中的 `CloudflareST.exe` 改为 `.\CloudflareST.exe` 即可。  
-> **提示**：Linux 系统只需要把下面命令中的 `CloudflareST.exe` 改为 `./CloudflareST` 即可。
+> **Note**: All parameters have **default values**, and parameters using default values can be omitted (**choose as needed**).  
+> **Tip**: In Windows **PowerShell**, just change `CloudflareST.exe` in the command to `.\CloudflareST.exe`.  
+> **Tip**: For Linux systems, just change `CloudflareST.exe` in the command to `./CloudflareST`.
 
 ****
 
-#### \# CMD 带参数运行 CloudflareST
+#### \# Run CloudflareST in CMD with Parameters
 
-对命令行程序不熟悉的人，可能不知道该如何带参数运行，我就简单说一下。
+For those not familiar with the command-line program, you might not know how to run it with parameters. Let me explain briefly.
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-很多人打开 CMD 以**绝对路径**运行 CloudflareST 会报错，这是因为默认的 `-f ip.txt` 参数是相对路径，需要指定绝对路径的 ip.txt 才行，但这样毕竟太麻烦了，因此还是建议进入 CloudflareST 程序目录下，以**相对路径**方式运行：
+Many people opening CMD to run CloudflareST with an **absolute path** will encounter errors. This is because the default `-f ip.txt` parameter is a relative
 
-**方式 一**：
-1. 打开 CloudflareST 程序所在目录  
-2. 空白处按下 <kbd>Shift + 鼠标右键</kbd> 显示右键菜单  
-3. 选择 **\[在此处打开命令窗口\]** 来打开 CMD 窗口，此时默认就位于当前目录下  
-4. 输入带参数的命令，如：`CloudflareST.exe -tll 50 -tl 200`即可运行
+ path and requires specifying the absolute path of ip.txt. However, this is too troublesome, so it is recommended to enter the CloudflareST program directory and run it with a **relative path**:
 
-**方式 二**：
-1. 打开 CloudflareST 程序所在目录  
-2. 直接在文件夹地址栏中全选并输入 `cmd` 回车来打开 CMD 窗口，此时默认就位于当前目录下  
-4. 输入带参数的命令，如：`CloudflareST.exe -tll 50 -tl 200`即可运行
+**Method 1**:
+1. Open the directory where CloudflareST is located.
+2. Right-click on a blank space, press <kbd>Shift + Right-click</kbd> to display the context menu.
+3. Choose **\[Open command window here\]** to open the CMD window, which is now located in the current directory.
+4. Enter the command with parameters, such as `CloudflareST.exe -tll 50 -tl 200` to run.
 
-> 当然你也可以随便打开一个 CMD 窗口，然后输入如 `cd /d "D:\Program Files\CloudflareST"` 来进入程序目录
+**Method 2**:
+1. Open the directory where CloudflareST is located.
+2. Directly select and enter `cmd` in the folder address bar, then press Enter to open the CMD window, which is now located in the current directory.
+3. Enter the command with parameters, such as `CloudflareST.exe -tll 50 -tl 200` to run.
 
-> **提示**：如果用的是 **PowerShell** 只需把命令中的 `CloudflareST.exe` 改为 `.\CloudflareST.exe` 即可。
+> Of course, you can also randomly open a CMD window and then enter something like `cd /d "D:\Program Files\CloudflareST"` to enter the program directory.
+
+> **Tip**: If you are using **PowerShell**, just change `CloudflareST.exe` in the command to `.\CloudflareST.exe`.
 
 </details>
 
 ****
 
-#### \# Windows 快捷方式带参数运行 CloudflareST
+#### \# Run CloudflareST with Parameters using Windows Shortcut
 
-如果不经常修改运行参数（比如平时都是直接双击运行）的人，建议使用快捷方式，更方便点。
+If you don't often modify the run parameters (such as usually directly double-clicking to run), it is recommended to use a shortcut, which is more convenient.
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
-****
+Right-click the `CloudflareST.exe` file - **\[Create Shortcut\]**, then right-click on the shortcut - **\[Properties\]**, and modify its **Target**:
 
-右键 `CloudflareST.exe` 文件 - **\[创建快捷方式\]**，然后右键该快捷方式 - **\[属性\]**，修改其**目标**：
-
-``` bash
-# 如果要不输出结果文件，那么请加上 -o " "，引号里的是空格（没有空格会导致该参数被省略）。
+```bash
+# If you don't want to output result files, add -o " " (quotes contain a space, without a space, this parameter will be omitted).
 D:\ABC\CloudflareST\CloudflareST.exe -n 500 -t 4 -dn 20 -dt 5 -o " "
 
-# 如果文件路径包含引号，则需要把启动参数放在引号外面，记得引号和 - 之间有空格。
+# If the file path contains quotes, place the startup parameters outside the quotes, and remember there is a space between quotes and -.
 "D:\Program Files\CloudflareST\CloudflareST.exe" -n 500 -t 4 -dn 20 -dt 5 -o " "
 
-# 注意！快捷方式 - 起始位置 不能是空的，否则就会因为绝对路径而找不到 ip.txt 文件
+# Note! The shortcut - Start in location cannot be empty; otherwise, it will not find the ip.txt file due to the absolute path.
 ```
 
 </details>
@@ -320,23 +299,23 @@ D:\ABC\CloudflareST\CloudflareST.exe -n 500 -t 4 -dn 20 -dt 5 -o " "
 #### \# IPv4/IPv6
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
-``` bash
-# 指定自带的 IPv4 数据文件可测速这些 IPv4 地址（-f 默认值就是 ip.txt，所以该参数可省略）
+```bash
+# Specify the built-in IPv4 data file to test these IPv4 addresses (the -f default value is ip.txt, so this parameter can be omitted).
 CloudflareST.exe -f ip.txt
 
-# 指定自带的 IPv6 数据文件可测速这些 IPv6 地址
-# 另外，v2.1.0 版本后支持 IPv4+IPv6 混合测速并移除了 -ipv6 参数，因此一个文件内可以同时包含 IPv4+IPv6 地址
+# Specify the built-in IPv6 data file to test these IPv6 addresses
+# Additionally, starting from version 2.1.0, IPv4+IPv6 mixed speed testing is supported, and the -ipv6 parameter has been removed. Therefore, a file can contain both IPv4+IPv6 addresses.
 CloudflareST.exe -f ipv6.txt
 
-# 也可以直接通过参数指定要测速的 IP
+# You can also specify the IP to be tested directly through parameters.
 CloudflareST.exe -ip 1.1.1.1,2606:4700::/32
-```
 
-> 测速 IPv6 时，可能会注意到每次测速数量都不一样，了解原因： [#120](https://github.com/XIU2/CloudflareSpeedTest/issues/120)  
-> 因为 IPv6 太多（以亿为单位），且绝大部分 IP 段压根未启用，所以我只扫了一部分可用的 IPv6 段写到 `ipv6.txt` 文件中，有兴趣的可以自行扫描增删，ASN 数据源来自：[bgp.he.net](https://bgp.he.net/AS13335#_prefixes6)
+> When testing IPv6, you may notice that the number of tests varies each time. Understand the reason: [#120](https://github.com/XIU2/CloudflareSpeedTest/issues/120)
+> Because there are too many IPv6 addresses (in the order of hundreds of millions), and the vast majority of IP ranges are not enabled, I only scanned a part of the available IPv6 ranges and wrote them to the `ipv6.txt` file. If you are interested, you can scan and add/delete them yourself. ASN data source is from: [bgp.he.net](https://bgp.he.net/AS13335#_prefixes6)
+```
 
 </details>
 
@@ -345,143 +324,135 @@ CloudflareST.exe -ip 1.1.1.1,2606:4700::/32
 #### \# HTTPing
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-目前有两种延迟测速模式，分别为 **TCP 协议、HTTP 协议**。  
-TCP 协议耗时更短、消耗资源更少，超时时间为 1 秒，该协议为默认模式。  
-HTTP 协议适用于快速测试某域名指向某 IP 时是否可以访问，超时时间为 2 秒。  
-同一个 IP，各协议去 Ping 得到的延迟一般为：**ICMP < TCP < HTTP**，越靠右对丢包等网络波动越敏感。
+There are currently two latency test modes: **TCP protocol** and **HTTP protocol**.
+The TCP protocol takes less time and consumes fewer resources, with a timeout of 1 second; this is the default mode.
+The HTTP protocol is suitable for quickly testing if a certain domain points to a certain IP, with a timeout of 2 seconds.
+For the same IP, the latency obtained by each protocol generally follows: **ICMP < TCP < HTTP**, with the rightmost being more sensitive to network fluctuations such as packet loss.
 
-> 注意：HTTPing 本质上也算一种**网络扫描**行为，因此如果你在服务器上面运行，需要**降低并发**(`-n`)，否则可能会被一些严格的商家暂停服务。如果你遇到 HTTPing 首次测速可用 IP 数量正常，后续测速越来越少甚至直接为 0，但停一段时间后又恢复了的情况，那么也可能是被 运营商、Cloudflare CDN 认为你在网络扫描而**触发临时限制机制**，因此才会过一会儿就恢复了，建议**降低并发**(`-n`)减少这种情况的发生。
+> Note: HTTPing is essentially a kind of **network scanning** behavior. If you run it on a server, you need to **reduce concurrency** (`-n`), or you may be temporarily suspended by some strict providers. If you encounter a situation where the first HTTPing test has a normal number of available IPs, but the subsequent tests have fewer and even become 0, but it recovers after a while, it may be due to triggering a temporary restriction mechanism by the ISP or Cloudflare CDN for **network scanning**. It will recover after a while. It is recommended to **reduce concurrency** (`-n`) to reduce the occurrence of this situation.
 
-> 另外，本软件 HTTPing 仅获取**响应头(response headers)**，并不获取正文内容（即 URL 文件大小不影响 HTTPing 测试，但如果你还要下载测速的话，那么还是需要一个大文件的），类似于 curl -i 功能。
+> Also, this software's HTTPing only obtains **response headers**, and does not retrieve the content of the body (i.e., the URL file size does not affect HTTPing tests. However, if you still want to perform download speed tests, you will need a large file).
 
-``` bash
-# 只需加上 -httping 参数即可切换到 HTTP 协议延迟测速模式
+```bash
+# Just add the -httping parameter to switch to HTTP protocol latency test mode.
 CloudflareST.exe -httping
 
-# 软件会根据访问时网页返回的有效 HTTP 状态码来判断可用性（当然超时也算），默认对返回 200 301 302 这三个 HTTP 状态码的视为有效，可以手动指定认为有效的 HTTP 状态码，但只能指定一个（你需要提前确定测试地址正常情况下会返回哪个状态码）
+# The software will determine the availability based on the effective HTTP status codes returned when accessing the webpage (of course, timeout is also considered). By default, responses with 200, 301, and 302 HTTP status codes are considered valid. You can manually specify the HTTP status code considered valid, but only one can be specified (you need to determine in advance which status code the test address will return under normal circumstances).
 CloudflareST.exe -httping -httping-code 200
 
-# 通过 -url 参数来指定 HTTPing 测试地址（可以是任意网页 URL，不局限于具体文件地址）
+# Use the -url parameter to specify the HTTPing test address (it can be any webpage URL, not limited to a specific file address).
 CloudflareST.exe -httping -url https://cf.xiu2.xyz/url
-# 如果你要 HTTPing 测试其他网站/CDN，那么指定一个该网站/使用该 CDN 的地址（因为软件默认地址是 Cloudflare 的，只能用于测试 Cloudflare 的 IP）
-
-# 注意：如果测速地址为 HTTP 协议，记得加上 -tp 80（这个参数会影响 延迟测速/下载测速 时使用的端口）
-# 同理，如果要测速 80 端口，那么也需要加上 -url 参数来指定一个 http:// 协议的地址才行（且该地址不会强制重定向至 HTTPS），如果是非 80 443 端口，那么需要确定该下载测速地址是否支持通过该端口访问。
-CloudflareST.exe -httping -tp 80 -url http://cdn.cloudflare.steamstatic.com/steam/apps/5952/movie_max.webm
+# If you want to HTTPing test other websites/CDNs, then specify an address that uses that website/CDN (because the default address is Cloudflare's and can only be used to test Cloudflare's IP).
 ```
 
 </details>
 
 ****
 
-#### \# 匹配指定地区(colo 机场三字码)
+#### \# Match specified region (colo airport three-letter code)
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-``` bash
-# 该功能支持 Cloudflare CDN、AWS CloudFront CDN，且这两个 CDN 的机场三字码是通用的
-# 注意：如果你要用于筛选 AWS CloudFront CDN 地区，那么要通过 -url 参数指定一个使用该 CDN 的地址（因为软件默认地址是 Cloudflare 的）
+```bash
+# This feature supports Cloudflare CDN and AWS CloudFront CDN, and the three-letter codes for these two CDNs are universal.
+# Note: If you want to use it to filter AWS CloudFront CDN regions, you need to specify an address using that CDN through the -url parameter (because the default address is Cloudflare's).
 
-# 指定地区名后，延迟测速后得到的结果就都是指定地区的 IP 了（也可以继续进行下载测速）
-# 节点地区名为当地 机场三字码，指定多个时用英文逗号分隔，v2.2.3 版本后支持小写
+# After specifying the region name, the results obtained after the latency test will all be IPs of the specified region (you can continue to perform download speed tests).
+# The node region name is the local airport three-letter code, and multiple names can be specified, separated by commas. Starting from version 2.2.3, lowercase is supported.
 
 CloudflareST.exe -cfcolo HKG,KHH,NRT,LAX,SEA,SJC,FRA,MAD
 
-# 注意，该参数只有在 HTTPing 延迟测速模式下才可用（因为要访问网页来获得）
+# Note that this parameter is only available in HTTPing latency test mode (because it needs to access the webpage to obtain it).
 ```
 
-> 两个 CDN 机场三字码通用，因此各地区名可见：https://www.cloudflarestatus.com/
-
+> The two CDN airport three-letter codes are universal, so you can see the names of each region here: https://www.cloudflarestatus.com/
 </details>
 
 ****
 
-#### \# 文件相对/绝对路径
+#### \# Relative/Absolute File Paths
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-``` bash
-# 指定 IPv4 数据文件，不显示结果直接退出，输出结果到文件（-p 值为 0）
+```bash
+# Specify the IPv4 data file, do not display the result directly exit, and output the result to the file (-p value is 0).
 CloudflareST.exe -f 1.txt -p 0 -dd
 
-# 指定 IPv4 数据文件，不输出结果到文件，直接显示结果（-p 值为 10 条，-o 值为空但引号不能少）
+# Specify the IPv4 data file, do not output the result to the file, and directly display the result (-p value is 10, -o value is empty but quotes cannot be less).
 CloudflareST.exe -f 2.txt -o "" -p 10 -dd
 
-# 指定 IPv4 数据文件 及 输出结果到文件（相对路径，即当前目录下，如含空格请加上引号）
+# Specify the IPv4 data file and output the result
+
+ to the file (relative path, i.e., in the current directory, if there are spaces, please add quotes).
 CloudflareST.exe -f 3.txt -o result.txt -dd
 
-
-# 指定 IPv4 数据文件 及 输出结果到文件（相对路径，即当前目录内的 abc 文件夹下，如含空格请加上引号）
-# Linux（CloudflareST 程序所在目录内的 abc 文件夹下）
+# Specify the IPv4 data file and output the result to the file (relative path, i.e., in the current directory in the abc folder, if there are spaces, please add quotes)
+# Linux (Inside the abc folder in the CloudflareST program directory)
 ./CloudflareST -f abc/3.txt -o abc/result.txt -dd
 
-# Windows（注意是反斜杠）
+# Windows (Note the backslash)
 CloudflareST.exe -f abc\3.txt -o abc\result.txt -dd
 
-
-# 指定 IPv4 数据文件 及 输出结果到文件（绝对路径，即 C:\abc\ 目录下，如含空格请加上引号）
-# Linux（/abc/ 目录下）
+# Specify the IPv4 data file and output the result to the file (absolute path, i.e., under the C:\abc\ directory, if there are spaces, please add quotes)
+# Linux (Under the /abc/ directory)
 ./CloudflareST -f /abc/4.txt -o /abc/result.csv -dd
 
-# Windows（注意是反斜杠）
+# Windows (Note the backslash)
 CloudflareST.exe -f C:\abc\4.txt -o C:\abc\result.csv -dd
 
-
-# 如果要以【绝对路径】运行 CloudflareST，那么 -f / -o 参数中的文件名也必须是【绝对路径】，否则会报错找不到文件！
-# Linux（/abc/ 目录下）
+# If you want to run CloudflareST with an absolute path, then the file name in the -f / -o parameter must also be an absolute path, otherwise an error will be reported file not found!
+# Linux (Under the /abc/ directory)
 /abc/CloudflareST -f /abc/4.txt -o /abc/result.csv -dd
 
-# Windows（注意是反斜杠）
+# Windows (Note the backslash)
 C:\abc\CloudflareST.exe -f C:\abc\4.txt -o C:\abc\result.csv -dd
 ```
 </details>
 
-****
-
-#### \# 测速其他端口
+#### \# Test Other Ports
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-``` bash
-# 如果你想要测速非默认 443 的其他端口，则需要通过 -tp 参数指定（该参数会影响 延迟测速/下载测速 时使用的端口）
+```bash
+# If you want to test ports other than the default 443, you need to specify them using the -tp parameter (this parameter will affect the port used for latency testing/download speed testing).
 
-# 如果要延迟测速 80 端口+下载测速（如果 -dd 禁用了下载测速则不需要），那么还需要指定 http:// 协议的下载测速地址才行（且该地址不会强制重定向至 HTTPS，因为那样就变成 443 端口了）
+# If you want to latency test port 80 + download speed test (if -dd disables download speed testing, it is not needed), you also need to specify an http:// protocol download speed test address (and the address will not be forcibly redirected to HTTPS because that will be port 443).
 CloudflareST.exe -tp 80 -url http://cdn.cloudflare.steamstatic.com/steam/apps/5952/movie_max.webm
 
-# 如果是非 80 443 的其他端口，那么需要确定你使用的下载测速地址是否支持通过该非标端口访问。
+# If it is a non-80 443 port, you need to make sure that the download speed test address you are using supports access through that non-standard port.
 ```
 
 </details>
 
 ****
 
-#### \# 自定义测速地址
+#### \# Custom Test Address
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-``` bash
-# 该参数适用于下载测速 及 HTTP 协议的延迟测速，对于后者该地址可以是任意网页 URL（不局限于具体文件地址）
+```bash
+# This parameter is applicable to download speed testing and latency testing using the HTTP protocol. For the latter, the address can be any webpage URL (not limited to a specific file address).
 
-# 地址要求：可以直接下载、文件大小超过 200MB、用的是 Cloudflare CDN
+# Address requirements: Direct download, file size over 200MB, and using Cloudflare CDN.
 CloudflareST.exe -url https://cf.xiu2.xyz/url
 
-# 注意：如果测速地址为 HTTP 协议（该地址不能强制重定向至 HTTPS），记得加上 -tp 80（这个参数会影响 延迟测速/下载测速 时使用的端口），如果是非 80 443 端口，那么需要确定下载测速地址是否支持通过该端口访问。
+# Note: If the test address is HTTP protocol (the address cannot be forcibly redirected to HTTPS), remember to add -tp 80 (this parameter will affect the port used for latency testing/download speed testing). If it is a non-80 443 port, you need to make sure that the download speed test address supports access through that port.
 CloudflareST.exe -tp 80 -url http://cdn.cloudflare.steamstatic.com/steam/apps/5952/movie_max.webm
 ```
 
@@ -489,206 +460,206 @@ CloudflareST.exe -tp 80 -url http://cdn.cloudflare.steamstatic.com/steam/apps/59
 
 ****
 
-#### \# 自定义测速条件（指定 延迟/丢包/下载速度 的目标范围）
+#### \# Custom Test Conditions (Specify the Target Range for Latency/Packet Loss/Download Speed)
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-> 注意：延迟测速进度条右边的**可用数量**，仅指延迟测速过程中**未超时的 IP 数量**，和延迟上下限条件无关。
+> Note: The "available quantity" on the right of the latency test progress bar refers only to the number of IPs that did not time out during the latency test and is unrelated to the latency upper and lower limit conditions.
 
-- 仅指定 **[平均延迟上限]** 条件
+- Specify only the **[Average Latency Upper Limit]** condition
 
-``` bash
-# 平均延迟上限：200 ms，下载速度下限：0 MB/s
-# 即找到平均延迟低于 200 ms 的 IP，然后再按延迟从低到高进行 10 次下载测速
+```bash
+# Average latency upper limit: 200 ms, download speed lower limit: 0 MB/s
+# That is, find IPs with an average latency below 200 ms, and then perform 10 download speed tests in ascending order of latency.
 CloudflareST.exe -tl 200
 ```
 
-> 如果**没有找到一个满足延迟**条件的 IP，那么不会输出任何内容。
+> If **no IP meets the latency** condition, nothing will be output.
 
 ****
 
-- 仅指定 **[平均延迟上限]** 条件，且**只延迟测速，不下载测速**
+- Specify only the **[Average Latency Upper Limit]** condition and **only latency testing, no download speed testing**
 
-``` bash
-# 平均延迟上限：200 ms，下载速度下限：0 MB/s，数量：不知道多少 个
-# 即只输出低于 200ms 的 IP，且不再下载测速（因为不再下载测速，所以 -dn 参数就无效了）
+```bash
+# Average latency upper limit: 200 ms, download speed lower limit: 0 MB/s, quantity: unknown
+# That is, only output IPs with latency below 200 ms and no longer perform download speed tests (because no longer performing download speed tests, the -dn parameter is invalid).
 CloudflareST.exe -tl 200 -dd
 ```
 
-- 仅指定 **[丢包几率上限]** 条件
+- Specify only the **[Packet Loss Upper Limit]** condition
 
-``` bash
-# 丢包几率上限：0.25
-# 即找到丢包率低于等于 0.25 的 IP，范围 0.00~1.00，如果 -tlr 0 则代表过滤掉任何丢包的 IP
+```bash
+# Packet loss upper limit: 0.25
+# That is, find IPs with a packet loss rate less than or equal to 0.25, with a range of 0.00 to 1.00. If -tlr 0 is specified, it means to filter out any IPs with packet loss.
 CloudflareST.exe -tlr 0.25
 ```
 
 ****
 
-- 仅指定 **[下载速度下限]** 条件
+- Specify only the **[Download Speed Lower Limit]** condition
 
-``` bash
-# 平均延迟上限：9999 ms，下载速度下限：5 MB/s，数量：10 个（可选）
-# 即需要找到 10 个平均延迟低于 9999 ms 且下载速度高于 5 MB/s 的 IP 才会停止测速
+```bash
+# Average latency upper limit: 9999 ms, download speed lower limit: 5 MB/s, quantity: 10 (optional)
+# That is, 10 IPs with an average latency below 9999 ms and a download speed above 5 MB/s must be found to stop the speed test.
 CloudflareST.exe -sl 5 -dn 10
 ```
 
-> 如果**没有找到一个满足速度**条件的 IP，那么会**忽略条件输出所有 IP 测速结果**（方便你下次测速时调整条件）。
+> If **no IP meets the speed** condition, it will **ignore the condition and output all IP speed test results** (convenient for adjusting conditions for the next test).
 
-> 没有指定平均延迟上限时，如果一直**凑不够**满足条件的 IP 数量，就会**一直测速**下去。  
-> 所以建议**同时指定 [下载速度下限] + [平均延迟上限]**，这样测速到指定延迟上限还没凑够数量，就会终止测速。
+> If you **do not specify the average latency upper limit**, and the number of IPs that meet the condition is not reached, it will continue to test the speed indefinitely.
+> So, it is recommended to **simultaneously specify [Download Speed Lower Limit] + [Average Latency Upper Limit]**. This way, if the test is not enough to meet the latency upper limit, it will stop the speed test.
 
 ****
 
-- 同时指定 **[平均延迟上限] + [下载速度下限]** 条件
+- Specify both the **[Average Latency Upper Limit] + [Download Speed Lower Limit]** conditions
 
-``` bash
-# 平均延迟上限、下载速度下限均支持小数（如 -sl 0.5）
-# 平均延迟上限：200 ms，下载速度下限：5.6 MB/s，数量：10 个（可选）
-# 即需要找到 10 个平均延迟低于 200 ms 且下载速度高于 5 .6MB/s 的 IP 才会停止测速
+```bash
+# Both the average latency upper limit and download speed lower limit support decimals (such as -sl 0.5).
+# Average latency upper limit: 200 ms, download speed lower limit: 5.6 MB/s, quantity: 10 (optional)
+# That is, 10 IPs with an average latency below 200 ms and a download speed above 5.6 MB/s must be found to stop the speed test.
 CloudflareST.exe -tl 200 -sl 5.6 -dn 10
 ```
 
-> 如果**没有找到一个满足延迟**条件的 IP，那么不会输出任何内容。  
-> 如果**没有找到一个满足速度**条件的 IP，那么会忽略条件输出所有 IP 测速结果（方便你下次测速时调整条件）。  
-> 所以建议先不指定条件测速一遍，看看平均延迟和下载速度大概在什么范围，避免指定条件**过低/过高**！
+> If **no IP meets the latency** condition, nothing will be output.
+> If **no IP meets the speed** condition, it will ignore the condition and output all IP speed test results (convenient for adjusting conditions for the next test).
+> So, it is recommended to run the test once without specifying conditions to see the approximate range of average latency and download speed to avoid specifying conditions that are too low or too high!
 
-> 因为 Cloudflare 公开的 IP 段是**回源 IP+任播 IP**，而**回源 IP**是无法使用的，所以下载测速是 0.00。  
-> 运行时可以加上 `-sl 0.01`（下载速度下限），过滤掉**回源 IP**（下载测速低于 0.01MB/s 的结果）。
-
+> Because the IP ranges published by Cloudflare are **origin IPs + anycast IPs**, and **origin IPs** cannot be used, so the download speed is 0.00.
+> You can add -sl 0.01 (download speed lower limit) at runtime to filter out **origin IPs** (results with download speeds below 0.01MB/s).
 </details>
 
 ****
 
-#### \# 单独对一个或多个 IP 测速
+#### \# Test a Single or Multiple IPs Separately
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-**方式 一**：
-直接通过参数指定要测速的 IP 段数据。
-``` bash
-# 先进入 CloudflareST 所在目录，然后运行：
-# Windows 系统（在 CMD 中运行）
+**Method One**:
+Specify the IP range data to be tested directly through parameters.
+```bash
+# Enter the directory where CloudflareST is located, and then run:
+# Windows system (run in CMD)
 CloudflareST.exe -ip 1.1.1.1,2.2.2.2/24,2606:4700::/32
 
-# Linux 系统
+# Linux system
 ./CloudflareST -ip 1.1.1.1,2.2.2.2/24,2606:4700::/32
 ```
 
 ****
 
-**方式 二**：
-或者把这些 IP 按如下格式写入到任意文本文件中，例如：`1.txt`
+**Method Two**:
+Alternatively, write these IPs in any text file in the following format, for example, `1.txt`
 
 ```
-1.1.1.1
+1.1.1.
+
+1
 1.1.1.200
 1.0.0.1/24
 2606:4700::/32
 ```
 
-> 单个 IP 的话可以省略 `/32` 子网掩码了（即 `1.1.1.1`等同于 `1.1.1.1/32`）。  
-> 子网掩码 `/24` 指的是这个 IP 最后一段，即 `1.0.0.1~1.0.0.255`。
+> For a single IP, you can omit the `/32` subnet mask (i.e., `1.1.1.1` is equivalent to `1.1.1.1/32`).
+> The subnet mask `/24` refers to the last segment of this IP, that is, `1.0.0.1~1.0.0.255`.
 
+Then run CloudflareST with the startup parameter `-f 1.txt` to specify the IP range data file.
 
-然后运行 CloudflareST 时加上启动参数 `-f 1.txt` 来指定 IP 段数据文件。
-
-``` bash
-# 先进入 CloudflareST 所在目录，然后运行：
-# Windows 系统（在 CMD 中运行）
+```bash
+# Enter the directory where CloudflareST is located, and then run:
+# Windows system (run in CMD)
 CloudflareST.exe -f 1.txt
 
-# Linux 系统
+# Linux system
 ./CloudflareST -f 1.txt
 
-# 对于 1.0.0.1/24 这样的 IP 段只会随机最后一段（1.0.0.1~255），如果要测速该 IP 段中的所有 IP，请加上 -allip 参数。
+# For IP ranges like 1.0.0.1/24, only the last segment will be random (1.0.0.1~255). If you want to test all IPs in this range, please add the -allip parameter.
 ```
 
 </details>
 
 ****
 
-#### \# 一劳永逸加速所有使用 Cloudflare CDN 的网站（不需要再一个个添加域名到 Hosts 了）
+#### \# One-stop Acceleration for All Websites Using Cloudflare CDN (No Need to Add Domains to Hosts One by One)
 
-我以前说过，开发该软件项目的目的就是为了通过**改 Hosts 的方式来加速访问使用 Cloudflare CDN 的网站**。
+I've mentioned before that the purpose of developing this software project is to accelerate access to websites using Cloudflare CDN through **modifying the Hosts file**.
 
-但就如 [**#8**](https://github.com/XIU2/CloudflareSpeedTest/issues/8) 所说，一个个添加域名到 Hosts 实在**太麻烦**了，于是我就找到了个**一劳永逸**的办法！可以看这个 [**还在一个个添加 Hosts？完美本地加速所有使用 Cloudflare CDN 的网站方法来了！**](https://github.com/XIU2/CloudflareSpeedTest/discussions/71) 和另一个[依靠本地 DNS 服务来修改域名解析 IP 为自选 IP](https://github.com/XIU2/CloudflareSpeedTest/discussions/317) 的教程。
-
-****
-
-#### \# 自动更新 Hosts
-
-考虑到很多人获得最快 Cloudflare CDN IP 后，需要替换 Hosts 文件中的 IP。
-
-可以看这个 [**Issues**](https://github.com/XIU2/CloudflareSpeedTest/discussions/312) 获取 **Windows/Linux 自动更新 Hosts 脚本**！
+However, as mentioned in [**#8**](https://github.com/XIU2/CloudflareSpeedTest/issues/8), adding domains to Hosts one by one is **too troublesome**, so I found a **one-stop solution**! You can check this [**Still adding Hosts one by one? Perfect local acceleration method for all websites using Cloudflare CDN is here!**](https://github.com/XIU2/CloudflareSpeedTest/discussions/71) and another [tutorial on modifying domain resolution IP to a custom IP using local DNS service](https://github.com/XIU2/CloudflareSpeedTest/discussions/317).
 
 ****
 
-## 问题反馈
+#### \# Automatically Update Hosts
 
-如果你遇到什么问题，可以先去 [**Issues**](https://github.com/XIU2/CloudflareSpeedTest/issues)、[Discussions](https://github.com/XIU2/CloudflareSpeedTest/discussions) 里看看是否有别人问过了（记得去看下  [**Closed**](https://github.com/XIU2/CloudflareSpeedTest/issues?q=is%3Aissue+is%3Aclosed) 的）。  
-如果没找到类似问题，请新开个 [**Issues**](https://github.com/XIU2/CloudflareSpeedTest/issues/new) 来告诉我！
+Considering that many people need to replace the IP in the Hosts file after obtaining the fastest Cloudflare CDN IP.
 
-> **注意**！_与 `反馈问题、功能建议` 无关的，请前往项目内部 论坛 讨论（上面的 `💬 Discussions`_  
-
-****
-
-## 赞赏支持
-
-![微信赞赏](https://github.com/XIU2/XIU2/blob/master/img/zs-01.png)![支付宝赞赏](https://github.com/XIU2/XIU2/blob/master/img/zs-02.png)
+You can check this [**Issues**](https://github.com/XIU2/CloudflareSpeedTest/discussions/312) to get **Windows/Linux automatic update Hosts script**!
 
 ****
 
-## 衍生项目
+## Issue Feedback
+
+If you encounter any issues, you can first check [**Issues**](https://github.com/XIU2/CloudflareSpeedTest/issues) and [Discussions](https://github.com/XIU2/CloudflareSpeedTest/discussions) to see if others have asked similar questions (remember to check [**Closed**](https://github.com/XIU2/CloudflareSpeedTest/issues?q=is%3Aissue+is%3Aclosed)).  
+If you don't find a similar issue, please open a new [**Issues**](https://github.com/XIU2/CloudflareSpeedTest/issues/new) to let me know!
+
+> **Note**! For things unrelated to `feedback issues, feature suggestions`, please go to the project's internal forum for discussion (the `💬 Discussions` above).
+
+****
+
+## Support and Appreciation
+
+![WeChat Appreciation](https://github.com/XIU2/XIU2/blob/master/img/zs-01.png)![Alipay Appreciation](https://github.com/XIU2/XIU2/blob/master/img/zs-02.png)
+
+****
+
+## Derivative Projects
 
 - _https://github.com/xianshenglu/cloudflare-ip-tester-app_  
-_**CloudflareST 安卓版 APP [#202](https://github.com/XIU2/CloudflareSpeedTest/discussions/320)**_
+_**CloudflareST Android APP [#202](https://github.com/XIU2/CloudflareSpeedTest/discussions/320)**_
 
 - _https://github.com/mingxiaoyu/luci-app-cloudflarespeedtest_  
-_**CloudflareST OpenWrt 路由器插件版 [#174](https://github.com/XIU2/CloudflareSpeedTest/discussions/319)**_
+_**CloudflareST OpenWrt Router Plugin Version [#174](https://github.com/XIU2/CloudflareSpeedTest/discussions/319)**_
 
 - _https://github.com/immortalwrt-collections/openwrt-cdnspeedtest_  
-_**CloudflareST OpenWrt 原生编译版本 [#64](https://github.com/XIU2/CloudflareSpeedTest/discussions/64)**_
+_**CloudflareST OpenWrt Native Compilation Version [#64](https://github.com/XIU2/CloudflareSpeedTest/discussions/64)**_
 
 - _https://github.com/hoseinnikkhah/CloudflareSpeedTest-English_  
 _**English language version of CloudflareST (Text language differences only) [#64](https://github.com/XIU2/CloudflareSpeedTest/issues/68)**_
 
-> _此处仅收集了在本项目中宣传过的部分 CloudflareST 相关衍生项目，如果有遗漏可以告诉我~_
+> _Here only collects some CloudflareST related derivative projects that have been promoted in this project. If there are omissions, please let me know~_
 
 ****
 
-## 感谢项目
+## Acknowledgments
 
 - _https://github.com/Spedoske/CloudflareScanner_
 
-> _因为该项目已经很长时间没更新了，而我又产生了很多功能需求，所以我临时学了下 Go 语言就上手了（菜）..._  
-> _本软件基于该项目制作，但**已添加大量功能及修复 BUG**，并根据大家的使用反馈积极添加、优化功能（闲）..._
+> _Because this project has not been updated for a long time, and I have many functional requirements, so I temporarily learned Go language and started (novice)..._  
+> _This software is made based on that project, but has **added a lot of features and fixed bugs**, and actively added and optimized features based on user feedback (leisure)..._
 
 ****
 
-## 手动编译
+## Manual Compilation
 
 <details>
-<summary><code><strong>「 点击展开 查看内容 」</strong></code></summary>
+<summary><code><strong>「 Click to expand to see the content 」</strong></code></summary>
 
 ****
 
-为了方便，我是在编译的时候将版本号写入代码中的 version 变量，因此你手动编译时，需要像下面这样在 `go build` 命令后面加上 `-ldflags` 参数来指定版本号：
+For convenience, I write the version number into the code's `version` variable during compilation. Therefore, when you manually compile, you need to use the `-ldflags` parameter after the `go build` command to specify the version number, like this:
 
 ```bash
 go build -ldflags "-s -w -X main.version=v2.3.3"
-# 在 CloudflareSpeedTest 目录中通过命令行（例如 CMD、Bat 脚本）运行该命令，即可编译一个可在和当前设备同样系统、位数、架构的环境下运行的二进制程序（Go 会自动检测你的系统位数、架构）且版本号为 v2.3.3
+# Run this command in the CloudflareSpeedTest directory via the command line (e.g., CMD, Batch script), and you can compile a binary program that can run in an environment with the same system, bit, and architecture as the current device (Go will automatically detect your system bit and architecture) and the version number is v2.3.3.
 ```
 
-如果想要在 Windows 64位系统下编译**其他系统、架构、位数**，那么需要指定 **GOOS** 和 **GOARCH** 变量。
+If you want to compile for **other systems, architectures, and bits** on a Windows 64-bit system, you need to specify the **GOOS** and **GOARCH** variables.
 
-例如在 Windows 系统下编译一个适用于 **Linux 系统 amd 架构 64 位**的二进制程序：
+For example, to compile a binary program suitable for **Linux system amd architecture 64-bit** on a Windows system:
 
 ```bat
 SET GOOS=linux
@@ -696,7 +667,7 @@ SET GOARCH=amd64
 go build -ldflags "-s -w -X main.version=v2.3.3"
 ```
 
-例如在 Linux 系统下编译一个适用于 **Windows 系统 amd 架构 32 位**的二进制程序：
+For example, to compile a binary program suitable for **Windows system amd architecture 32-bit** on a Linux system:
 
 ```bash
 GOOS=windows
@@ -704,15 +675,15 @@ GOARCH=386
 go build -ldflags "-s -w -X main.version=v2.3.3"
 ```
 
-> 可以运行 `go tool dist list` 来查看当前 Go 版本支持编译哪些组合。
+> You can run `go tool dist list` to see which combinations are supported by the current Go version.
 
 ****
 
-当然，为了方便批量编译，我会专门指定一个变量为版本号，后续编译直接调用该版本号变量即可。  
-同时，批量编译的话，还需要分开放到不同文件夹才行（或者文件名不同），需要加上 `-o` 参数指定。
+Of course, for convenience of batch compilation, I will specifically set a variable for the version number, and subsequent compilations can directly call this version number variable.  
+At the same time, for batch compilation, you need to separate them into different folders (or use different file names), and you need to add the `-o` parameter to specify.
 
 ```bat
-:: Windows 系统下是这样：
+:: For Windows system:
 SET version=v2.3.3
 SET GOOS=linux
 SET GOARCH=amd64
@@ -720,7 +691,7 @@ go build -o Releases\CloudflareST_linux_amd64\CloudflareST -ldflags "-s -w -X ma
 ```
 
 ```bash
-# Linux 系统下是这样：
+# For Linux system:
 version=v2.3.3
 GOOS=windows
 GOARCH=386
